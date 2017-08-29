@@ -15,7 +15,6 @@ import kmitl.lab03.narubed58070068.simplemydot.view.DotView;
 
 public class MainActivity extends AppCompatActivity implements Dot.onDotChangedListener {
 
-    private Dot dot;
     private DotView dotView;
 
     @Override
@@ -29,19 +28,33 @@ public class MainActivity extends AppCompatActivity implements Dot.onDotChangedL
         Random rd = new Random();
         int centerX = rd.nextInt(dotView.getWidth());
         int centerY = rd.nextInt(dotView.getHeight());
-        int color = Color.argb(255, rd.nextInt(255), rd.nextInt(255), rd.nextInt(255));
-        new Dot(this, centerX, centerY, 50, color);
-    }
+        createDot(centerX, centerY);
 
+    }
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             int position[] = new int[2];
             dotView.getLocationOnScreen(position);
-            Random rd = new Random();
-            int color = Color.argb(255, rd.nextInt(255), rd.nextInt(255), rd.nextInt(255));
-            new Dot(this, (int) event.getX()-position[0],(int) event.getY()-position[1], 50, color);
+            int centerX = (int) event.getX()-position[0];
+            int centerY = (int) event.getY()-position[1];
+            for(Dot dot : dotView.getDotlist()) {
+                double distance = dotView.checkdot(dot, centerX, centerY);
+                if(distance <= 50){
+                    dotView.removeDot(dot);
+                    dotView.invalidate();
+                    return false;
+                }
+            }
+            createDot(centerX, centerY);
         }
         return false;
+    }
+
+    public void createDot(int centerX, int centerY){
+        Random rd = new Random();
+        int color = Color.argb(255, rd.nextInt(255), rd.nextInt(255), rd.nextInt(255));
+        new Dot(this, centerX,(int) centerY, 50, color);
     }
 
     @Override

@@ -19,6 +19,15 @@ import kmitl.lab03.narubed58070068.simplemydot.model.Dot;
 public class DotView extends View {
     private Paint paint;
     private Dot dot;
+
+    public LinkedList<Dot> getDotlist() {
+        return dotlist;
+    }
+
+    public void setDotlist(LinkedList<Dot> dotlist) {
+        this.dotlist = dotlist;
+    }
+
     private LinkedList<Dot> dotlist = new LinkedList();
 
     @Override
@@ -30,10 +39,22 @@ public class DotView extends View {
         for (Dot dots : dotlist) {
             if (dots != null) {
                 paint.setColor(dots.getColor());
-                canvas.drawCircle(dots.getCenterX(), dots.getCenterY(), 20, paint);
+                canvas.drawCircle(dots.getCenterX(), dots.getCenterY(), dots.getRadius(), paint);
                 dot = null;
             }
         }
+    }
+
+    public double checkdot(Dot dots, int centerX, int centerY) {
+        double distance=999999;
+        if(dots != null) {
+            distance = Math.sqrt(Math.pow(dots.getCenterX() - centerX, 2) + Math.pow(dots.getCenterY() - centerY, 2));
+        }
+        return distance;
+    }
+
+    public void removeDot(Dot dots){
+        dotlist.remove(dots);
     }
 
     public void clearDot() {
