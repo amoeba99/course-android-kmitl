@@ -3,6 +3,7 @@ package kmitl.lab03.narubed58070068.simplemydot;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.LinkedList;
@@ -30,6 +31,17 @@ public class MainActivity extends AppCompatActivity implements Dot.onDotChangedL
         int centerY = rd.nextInt(dotView.getHeight());
         int color = Color.argb(255, rd.nextInt(255), rd.nextInt(255), rd.nextInt(255));
         new Dot(this, centerX, centerY, 50, color);
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            int position[] = new int[2];
+            dotView.getLocationOnScreen(position);
+            Random rd = new Random();
+            int color = Color.argb(255, rd.nextInt(255), rd.nextInt(255), rd.nextInt(255));
+            new Dot(this, (int) event.getX()-position[0],(int) event.getY()-position[1], 50, color);
+        }
+        return false;
     }
 
     @Override
