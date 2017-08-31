@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -16,6 +18,7 @@ import kmitl.lab03.narubed58070068.simplemydot.view.DotView;
 public class MainActivity extends AppCompatActivity implements Dot.onDotChangedListener {
 
     private DotView dotView;
+    private LinkedList<Dot> dotlist = new LinkedList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements Dot.onDotChangedL
             dotView.getLocationOnScreen(position);
             int centerX = (int) event.getX()-position[0];
             int centerY = (int) event.getY()-position[1];
-            for(Dot dot : dotView.getDotlist()) {
+            dotlist = (LinkedList) dotView.getDotlist().clone();
+            Collections.reverse(dotlist);
+            for(Dot dot : dotlist) {
                 double distance = dotView.checkdot(dot, centerX, centerY);
                 if(distance <= 50){
                     dotView.removeDot(dot);
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements Dot.onDotChangedL
 
     public void createDot(int centerX, int centerY){
         Random rd = new Random();
-        int color = Color.argb(255, rd.nextInt(255), rd.nextInt(255), rd.nextInt(255));
+        int color = Color.argb(100+rd.nextInt(155), rd.nextInt(255), rd.nextInt(255), rd.nextInt(255));
         new Dot(this, centerX,(int) centerY, 50, color);
     }
 

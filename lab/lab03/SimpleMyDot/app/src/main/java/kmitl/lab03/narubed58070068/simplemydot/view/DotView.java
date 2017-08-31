@@ -20,9 +20,7 @@ public class DotView extends View {
     private Paint paint;
     private Dot dot;
 
-    public LinkedList<Dot> getDotlist() {
-        return dotlist;
-    }
+
 
     public void setDotlist(LinkedList<Dot> dotlist) {
         this.dotlist = dotlist;
@@ -30,12 +28,16 @@ public class DotView extends View {
 
     private LinkedList<Dot> dotlist = new LinkedList();
 
+    public LinkedList<Dot> getDotlist() {
+
+        return dotlist;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         dotlist.add(dot);
-
         for (Dot dots : dotlist) {
             if (dots != null) {
                 paint.setColor(dots.getColor());
@@ -46,14 +48,14 @@ public class DotView extends View {
     }
 
     public double checkdot(Dot dots, int centerX, int centerY) {
-        double distance=999999;
-        if(dots != null) {
+        double distance = 999999;
+        if (dots != null) {
             distance = Math.sqrt(Math.pow(dots.getCenterX() - centerX, 2) + Math.pow(dots.getCenterY() - centerY, 2));
         }
         return distance;
     }
 
-    public void removeDot(Dot dots){
+    public void removeDot(Dot dots) {
         dotlist.remove(dots);
     }
 

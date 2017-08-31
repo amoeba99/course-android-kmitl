@@ -6,14 +6,6 @@ package kmitl.lab03.narubed58070068.simplemydot.model;
 
 public class Dot {
 
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
     public interface onDotChangedListener {
         void onDotChanged(Dot dot);
     }
@@ -36,7 +28,6 @@ public class Dot {
         this.color = color;
         this.listener.onDotChanged(this);
     }
-
 
     public int getCenterX() {
         return centerX;
@@ -62,5 +53,12 @@ public class Dot {
         this.radius = radius;
     }
 
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
 
 }
