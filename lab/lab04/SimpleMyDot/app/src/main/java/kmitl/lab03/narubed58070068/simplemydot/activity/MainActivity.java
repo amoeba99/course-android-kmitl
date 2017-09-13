@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         }
     }
 
-    private Bitmap getScreenshot() {
+    private Bitmap screenShot() {
         View root = this.dotView.getRootView();
         Bitmap screenShot = Bitmap.createBitmap(root.getWidth(), root.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(screenShot);
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         return screenShot;
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
+    public Uri imageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
 
     public void onShare(View view){
         if(requestExternalStoragePermission()) {
-            Bitmap screenshot = this.getScreenshot();
-            Uri uri = getImageUri(this.getApplicationContext(), screenshot);
+            Bitmap screenshot = screenShot();
+            Uri uri = imageUri(getApplicationContext(), screenshot);
             shareScreen(uri);
         }
     }

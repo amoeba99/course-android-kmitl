@@ -50,8 +50,8 @@ public class Dots {
     }
 
     public void undo(){
-        if(dotlist.size() != 0) {
-            dotlist.remove(dotlist.size() - 1);
+        if(!dotlist.isEmpty()) {
+            dotlist.remove(dotlist.getLast());
         }
     }
 
