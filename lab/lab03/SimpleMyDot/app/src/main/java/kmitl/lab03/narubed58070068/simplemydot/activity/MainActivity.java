@@ -1,16 +1,18 @@
-package kmitl.lab03.narubed58070068.simplemydot;
+package kmitl.lab03.narubed58070068.simplemydot.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
+import kmitl.lab03.narubed58070068.simplemydot.R;
 import kmitl.lab03.narubed58070068.simplemydot.model.Dot;
 import kmitl.lab03.narubed58070068.simplemydot.view.DotView;
 
@@ -25,6 +27,15 @@ public class MainActivity extends AppCompatActivity implements Dot.onDotChangedL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         dotView = (DotView) findViewById(R.id.dotView);
+        Button btnOpenActivity = (Button) findViewById(R.id.btnOpenActivity);
+        btnOpenActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("word", "ssss");
+                startActivity(intent);
+            }
+        });
     }
 
     public void onRandomDot(View view) {
@@ -72,5 +83,7 @@ public class MainActivity extends AppCompatActivity implements Dot.onDotChangedL
         dotView.clearDot();
         dotView.invalidate();
     }
+
+
 
 }
