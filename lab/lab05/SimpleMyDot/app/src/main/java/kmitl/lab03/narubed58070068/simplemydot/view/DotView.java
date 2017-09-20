@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -34,6 +35,7 @@ public class DotView extends View {
 
     public interface OnDotViewPressListener{
         void onDotViewPressed(int x, int y);
+        void onDotViewLongPressed(int x, int y);
     }
 
     private OnDotViewPressListener onDotViewPressListener;
@@ -42,17 +44,35 @@ public class DotView extends View {
         this.onDotViewPressListener = onDotViewPressListener;
     }
 
+    final GestureDetector gestureDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            onDotViewPressListener.onDotViewLongPressed((int) e.getX(), (int) e.getY());
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            onDotViewPressListener.onDotViewPressed((int) e.getX(), (int) e.getY());
+            return super.onSingleTapUp(e);
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            onDotViewPressListener.onDotViewPressed((int) e1.getX(), (int) e1.getY());
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+    });
+
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                this.onDotViewPressListener
-                        .onDotViewPressed(
-                                (int)event.getX(),
-                                (int)event.getY());
-                return true;
-        }
-        return false;
+        return gestureDetector.onTouchEvent(event);
     }
 
     public void setDots(Dots dots) {
