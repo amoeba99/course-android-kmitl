@@ -63,12 +63,7 @@ public class DotViewFragment extends Fragment implements Dots.OnDotsChangedListe
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if(savedInstanceState != null){
-            dotlist = savedInstanceState.getParcelable("dotlist");
-        }else{
-            dotlist = new Dots();
-        }
+        dotlist = new Dots();
         dotlist.setListener(this);
         selectListener = (OnDotSelectListener) getActivity();
     }
