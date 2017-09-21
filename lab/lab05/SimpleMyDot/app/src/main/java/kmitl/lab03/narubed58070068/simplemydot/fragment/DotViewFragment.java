@@ -14,7 +14,6 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.Random;
 
 import kmitl.lab03.narubed58070068.simplemydot.R;
-import kmitl.lab03.narubed58070068.simplemydot.activity.MainActivity;
 import kmitl.lab03.narubed58070068.simplemydot.model.Dot;
 import kmitl.lab03.narubed58070068.simplemydot.model.Dots;
 import kmitl.lab03.narubed58070068.simplemydot.view.DotView;

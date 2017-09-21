@@ -2,7 +2,6 @@ package kmitl.lab03.narubed58070068.simplemydot.model;
 
 import java.util.LinkedList;
 
-import kmitl.lab03.narubed58070068.simplemydot.activity.MainActivity;
 
 /**
  * Created by Amoeba on 9/12/2017.

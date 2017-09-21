@@ -3,18 +3,19 @@ package kmitl.lab03.narubed58070068.simplemydot.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
+
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import kmitl.lab03.narubed58070068.simplemydot.R;
 import kmitl.lab03.narubed58070068.simplemydot.model.Dot;
-import kmitl.lab03.narubed58070068.simplemydot.view.DotView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,19 +23,20 @@ import kmitl.lab03.narubed58070068.simplemydot.view.DotView;
 public class EditDotFragment extends Fragment implements View.OnClickListener {
 
     public interface EditListener {
-        void editlistener(Dot dot);
+        void editlistener();
     }
 
     private EditListener listener;
     private Dot dot;
     private View rootView;
-    private EditText alpha;
-    private EditText red;
-    private EditText green;
-    private EditText blue;
+    private SeekBar alpha;
+    private SeekBar red;
+    private SeekBar green;
+    private SeekBar blue;
     private EditText radius;
     private EditText centerX;
     private EditText centerY;
+    private TextView preview;
 
     public EditDotFragment() {
         // Required empty public constructor
@@ -68,26 +70,107 @@ public class EditDotFragment extends Fragment implements View.OnClickListener {
         radius = rootView.findViewById(R.id.radius);
         centerX = rootView.findViewById(R.id.centerX);
         centerY = rootView.findViewById(R.id.centerY);
+        preview = rootView.findViewById(R.id.preview);
         dot = getArguments().getParcelable("dot");
-        alpha.setText(Integer.toString(Color.alpha(dot.getColor())));
-        red.setText(Integer.toString(Color.red(dot.getColor())));
-        green.setText(Integer.toString(Color.green(dot.getColor())));
-        blue.setText(Integer.toString(Color.blue(dot.getColor())));
+        alpha.setProgress(Color.alpha(dot.getColor()));
+        red.setProgress(Color.red(dot.getColor()));
+        green.setProgress(Color.green(dot.getColor()));
+        blue.setProgress(Color.blue(dot.getColor()));
         radius.setText(Integer.toString(dot.getRadius()));
         centerX.setText(Integer.toString(dot.getCenterX()));
         centerY.setText(Integer.toString(dot.getCenterY()));
-
+        preview.setBackgroundColor(dot.getColor());
+        seekbarListener(rootView);
         return rootView;
     }
 
+    public void seekbarListener(View view){
+        alpha.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    preview.setBackgroundColor(Color.argb(alpha.getProgress(), red.getProgress(),
+                            green.getProgress(),
+                            blue.getProgress()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                preview.setBackgroundColor(Color.argb(alpha.getProgress(), red.getProgress(),
+                        green.getProgress(),
+                        blue.getProgress()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        green.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                preview.setBackgroundColor(Color.argb(alpha.getProgress(), red.getProgress(),
+                        green.getProgress(),
+                        blue.getProgress()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        blue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                preview.setBackgroundColor(Color.argb(alpha.getProgress(), red.getProgress(),
+                        green.getProgress(),
+                        blue.getProgress()));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+
     public void onOkay() {
-        dot.setColor(Color.argb(Integer.parseInt(alpha.getText().toString()), Integer.parseInt(red.getText().toString()),
-                Integer.parseInt(green.getText().toString()),
-                Integer.parseInt(blue.getText().toString())));
+        dot.setColor(Color.argb(alpha.getProgress(), red.getProgress(),
+                green.getProgress(),
+                blue.getProgress()));
         dot.setRadius(Integer.parseInt(radius.getText().toString()));
         dot.setCenterX(Integer.parseInt(centerX.getText().toString()));
         dot.setCenterY(Integer.parseInt(centerY.getText().toString()));
-        listener.editlistener(dot);
+        listener.editlistener();
     }
 
     @Override
