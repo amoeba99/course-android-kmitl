@@ -9,14 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.demo.lazy.instagram.model.Posts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Amoeba on 10/6/2017.
  */
 
 class Holder extends RecyclerView.ViewHolder {
+
 
     private ImageView image;
     private TextView comment;
@@ -30,9 +33,7 @@ class Holder extends RecyclerView.ViewHolder {
 
     public static class PostAdapter extends RecyclerView.Adapter<Holder> {
 
-        private ArrayList<String> dataImg = new ArrayList<>();
-        private ArrayList<Integer> dataComment = new ArrayList<>();
-        private ArrayList<Integer> dataLikes = new ArrayList<>();
+        private List<Posts> data;
         private Context context;
         private int layout;
 
@@ -50,62 +51,24 @@ class Holder extends RecyclerView.ViewHolder {
 
         @Override
         public void onBindViewHolder(Holder holder, int position) {
-            Glide.with(context).load(dataImg.get(position).toString()).into(holder.image);
-            holder.comment.setText("comment: "+Integer.toString(dataComment.get(position)));
-            holder.likes.setText("likes: "+Integer.toString(dataLikes.get(position)));
+                Glide.with(context).load(this.data.get(position).getUrl()).into(holder.image);
+                holder.comment.setText("comment: " + Integer.toString(this.data.get(position).getComment()));
+                holder.likes.setText("likes: " + Integer.toString(this.data.get(position).getLike()));
         }
 
         @Override
         public int getItemCount() {
-            if (dataImg != null)
-                return dataImg.size();
+            if (this.data != null)
+                return data.size();
             return 0;
         }
 
-
-        public ArrayList<String> getData() {
-            return dataImg;
+        public List<Posts> getData() {
+            return data;
         }
 
-        public void setData(ArrayList<String> data) {
-            this.dataImg = data;
-        }
-
-        public void addData(String url, int comment, int likes) {
-            dataImg.add(url);
-            dataComment.add(comment);
-            dataLikes.add(likes);
-        }
-
-        public void clearList() {
-            dataImg.clear();
-            dataComment.clear();
-            dataLikes.clear();
-
-        }
-
-        public ArrayList<String> getDataImg() {
-            return dataImg;
-        }
-
-        public void setDataImg(ArrayList<String> dataImg) {
-            this.dataImg = dataImg;
-        }
-
-        public ArrayList<Integer> getDataComment() {
-            return dataComment;
-        }
-
-        public void setDataComment(ArrayList<Integer> dataComment) {
-            this.dataComment = dataComment;
-        }
-
-        public ArrayList<Integer> getDataLikes() {
-            return dataLikes;
-        }
-
-        public void setDataLikes(ArrayList<Integer> dataLikes) {
-            this.dataLikes = dataLikes;
+        public void setData(List<Posts> data) {
+            this.data = data;
         }
 
         public Context getContext() {

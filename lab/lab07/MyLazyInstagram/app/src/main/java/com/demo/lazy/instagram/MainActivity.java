@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private String user = "nature";
     private String mode = "grid";
     private RecyclerView recyclerView;
-    private String[] tempList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refresh(String user, String mode){
-        postAdapter.clearList();
         getUserProfile(user);
         if(mode.equals("grid"))
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
@@ -106,10 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     textFollower.setText("Follwer\n"+Integer.toString(result.getFollower()));
                     textFollowing.setText("Following\n"+Integer.toString(result.getFollowing()));
                     textBio.setText(result.getBio());
-                    for(int i=0;i<result.getPosts().size();i++){
-                        tempList = result.getPosts().get(i).toString().split(", ");
-                        postAdapter.addData(tempList[2].substring(4, tempList[2].length()-1), (int) Float.parseFloat(tempList[0].substring(9)), (int) Float.parseFloat(tempList[1].substring(5)));
-                    }
+                    postAdapter.setData(result.getPosts());
                     recyclerView.setAdapter(postAdapter);
                     Glide.with(MainActivity.this).load(result.getUrlProfile()).into(imageProfile);
                 }

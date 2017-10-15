@@ -1,5 +1,7 @@
 package com.demo.lazy.instagram.api;
 
+import com.demo.lazy.instagram.model.Posts;
+
 import java.util.List;
 
 /**
@@ -14,13 +16,13 @@ public class UserProfile {
     private int post;
     private String urlProfile;
     private String user;
-    private List posts;
+    private List<Posts> posts;
 
-    public List getPosts() {
+    public List<Posts> getPosts() {
         return posts;
     }
 
-    public void setPosts(List posts) {
+    public void setPosts(List<Posts> posts) {
         this.posts = posts;
     }
 
