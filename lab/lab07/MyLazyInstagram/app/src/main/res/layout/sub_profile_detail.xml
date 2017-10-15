@@ -7,22 +7,25 @@
     <TextView
         android:id="@+id/textPost"
         android:layout_width="0dp"
-        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Post\n10" />
+        android:text="Post\n10"
+        android:textColor="#000"
+        />
     <TextView
         android:id="@+id/textFollower"
-        android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Follower\n1" />
+        android:text="Follower\n1"
+        android:textColor="#000"
+        />
     <TextView
         android:id="@+id/textFollwing"
-        android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Following\n1000000" />
+        android:text="Following\n1000000"
+        android:textColor="#000"
+        />
 </LinearLayout>

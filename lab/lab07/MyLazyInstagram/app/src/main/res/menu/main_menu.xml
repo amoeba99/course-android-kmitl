@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <item
-    android:id="@+id/menu"
-    android:title="menu"
-    app:showAsAction="ifRoom">
-    <menu>
-        <item
-            android:id="@+id/change_user"
-            android:title="Change User" >
-            <menu>
-        <item
-            android:id="@+id/android"
-            android:title="android" />
-        <item
-            android:id="@+id/nature"
-            android:title="nature" />
-        <item
-            android:id="@+id/cartoon"
-            android:title="cartoon" />
-            </menu>
-        </item>
-        <item
-            android:id="@+id/switch_mode"
-            android:title="Switch Mode"
-            />
-    </menu>
+        android:id="@+id/menu"
+        android:icon="@android:drawable/ic_menu_more"
+        android:title="menu"
+        app:showAsAction="ifRoom"
+        >
+        <menu>
+            <item
+                android:id="@+id/change_user"
+                android:title="Change User">
+                <menu>
+                    <item
+                        android:id="@+id/android"
+                        android:title="android" />
+                    <item
+                        android:id="@+id/nature"
+                        android:title="nature" />
+                    <item
+                        android:id="@+id/cartoon"
+                        android:title="cartoon" />
+                </menu>
+            </item>
+            <item
+                android:id="@+id/switch_mode"
+                android:title="Switch Mode" />
+        </menu>
     </item>
 </menu>
