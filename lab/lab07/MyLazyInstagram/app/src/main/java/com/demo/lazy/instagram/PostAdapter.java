@@ -52,8 +52,8 @@ class Holder extends RecyclerView.ViewHolder {
         @Override
         public void onBindViewHolder(Holder holder, int position) {
                 Glide.with(context).load(this.data.get(position).getUrl()).into(holder.image);
-                holder.comment.setText("comment: " + Integer.toString(this.data.get(position).getComment()));
-                holder.likes.setText("likes: " + Integer.toString(this.data.get(position).getLike()));
+                holder.comment.setText(Integer.toString(this.data.get(position).getComment()));
+                holder.likes.setText(Integer.toString(this.data.get(position).getLike()));
         }
 
         @Override
