@@ -14,7 +14,8 @@
         android:textSize="24sp"
         android:gravity="center"
         android:text="User Info"
-        android:background="#f6bdc7c9"
+        android:textColor="#000"
+        android:background="#d3ffdfbe"
         android:layout_marginBottom="30dp"/>
 
     <TextView
@@ -45,6 +46,8 @@
         android:id="@+id/buttonAdded"
         android:text="ADDED"
         android:textStyle="bold"
+        android:textColor="#000"
+        android:background="#df92e67f"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -52,6 +55,8 @@
         android:id="@+id/buttonGotoList"
         android:text="GO TO LIST"
         android:textStyle="bold"
+        android:textColor="#000"
+        android:background="#e0ff9a9a"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

@@ -73,7 +73,4 @@ public class MainActivity extends AppCompatActivity{
         }
         preference.save(UserInfoListActivity.EXTTRA_LIST, userInfoList);
     }
-
-
-
 }
