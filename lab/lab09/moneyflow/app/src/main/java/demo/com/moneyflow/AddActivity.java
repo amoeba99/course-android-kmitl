@@ -56,7 +56,6 @@ public class AddActivity extends AppCompatActivity {
                     Log.d("check ID", "onPostExecute: " + monies.get(position).getId());
                 }
             }.execute();
-
         }
 
         final SingleSelectToggleGroup single = (SingleSelectToggleGroup) findViewById(R.id.group_choices);
@@ -97,7 +96,6 @@ public class AddActivity extends AppCompatActivity {
                                 Integer.valueOf(amount.getText().toString()), SQL_ID);
                     }
                 }.execute();
-
             } else {
                 final Money money = new Money();
                 money.setItem(item.getText().toString());

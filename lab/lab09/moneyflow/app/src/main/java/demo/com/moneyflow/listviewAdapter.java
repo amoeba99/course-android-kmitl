@@ -75,7 +75,7 @@ public class listviewAdapter extends BaseAdapter
         HashMap map = list.get(position);
         holder.textType.setText((CharSequence) map.get(TYPE_COLUMN));
         holder.textItem.setText((CharSequence) map.get(ITEM_COLUMN));
-        holder.textAmount.setText('฿' + String.valueOf(map.get(AMOUNT_COLUMN)));
+        holder.textAmount.setText(String.valueOf(map.get(AMOUNT_COLUMN)));
 
         convertView.measure(0, 0);
         holder.textType.setHeight(convertView.getMeasuredHeight());

@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity{
     @OnClick(R.id.AddButton)
     public void add(){
         Intent intent = new Intent(this, AddActivity.class);
+        Constant.Checkedit = 0;
         startActivity(intent);
     }
 }
